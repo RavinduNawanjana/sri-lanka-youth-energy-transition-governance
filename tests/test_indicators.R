@@ -1,0 +1,26 @@
+source("R/indicators.R")
+base <- read_register("data/illustrative/roadmap_proposals.csv")
+stopifnot(nrow(base)==11L, sum(base$status=="completed_verified")==0L)
+stopifnot(sum(status_summary(base)$records_in_supplied_register)==11L)
+stopifnot(sum(quarter_summary(base)$registered_activities)==11L)
+stopifnot(sum(quarter_summary(base)$verified_completions_in_register)==0L)
+stopifnot(nrow(theme_summary(base))>1L)
+stopifnot(!anyDuplicated(base$activity_id))
+should_fail <- function(mod) {
+  good <- tryCatch({validate_activity_register(mod);FALSE},error=function(e) TRUE)
+  stopifnot(good)
+}
+copy <- base; copy$activity_id[2] <- copy$activity_id[1]; should_fail(copy)
+copy <- base; copy$status[1] <- "completed_verified";should_fail(copy)
+copy <- base; copy$status[1] <- "completed_verified";copy$completed_on[1] <- "2026-06-01";should_fail(copy)
+copy <- base; copy$status[1] <- "completed_verified";copy$completed_on[1] <- "2026-06-01";copy$evidence_locator[1] <- "private/proof.pdf"
+stopifnot(isTRUE(validate_activity_register(copy)))
+stopifnot(sum(quarter_summary(copy)$verified_completions_in_register)==1L)
+copy <- base;copy$year[1] <- "26";should_fail(copy)
+copy <- base;copy$quarter[1] <- "Q5";should_fail(copy)
+copy <- base;copy$status[1] <- "reported";should_fail(copy)
+copy <- base;copy$completed_on[1] <- NA;should_fail(copy)
+empty <- base[0,]
+stopifnot(nrow(quarter_summary(empty))==0L)
+stopifnot(sum(status_summary(empty)$records_in_supplied_register)==0)
+cat("R programme monitoring tests passed.\n")

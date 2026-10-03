@@ -1,0 +1,27 @@
+---
+title: "Quarterly governance-monitoring protocol"
+---
+
+The supplied evidence includes a proposed 2026–2030 CSET Youth chapter roadmap; a funding request for four youth capacity-building workshops; and a separate technical-committee note that refers to workshops as if completed. **These statuses are not reconciled by assertion.** The illustrative register has no `completed_verified` records, which means **none are supplied in this demonstration file**, not that the real programme delivered zero workshops.
+
+## Registry-based quantities
+
+```{r}
+#| label: tbl-register
+source("R/indicators.R")
+r <- read_register("data/illustrative/roadmap_proposals.csv")
+knitr::kable(quarter_summary(r), caption="Quarters in illustrative planning register, not realised delivery")
+```
+
+```{r}
+#| label: tbl-status
+knitr::kable(status_summary(r),caption="Input statuses; do not interpret as an activity verification audit")
+```
+
+## Denominator and status policy
+
+The denominator is **rows recorded in the supplied planning register**. It is not an estimate of all relevant national activities or attendees. `completed_verified` is permitted only when accompanied by a completion date and a traceable evidence locator; the software validates presence, not factual authenticity of documents. A reviewer must independently inspect supporting evidence before making a historical claim.
+
+## Intended research upgrade
+
+Record attendance and consent, invitations, dated agendas, curricula, surveys, signed venue reports, photographs with permissions, financial invoices and validated outcome indicators. Avoid portraying planned attendance targets or funding proposals as measured impact.
