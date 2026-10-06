@@ -1,7 +1,5 @@
 # Sri Lanka youth energy-transition governance: evidence-led monitoring
 
-**Independent, reproducible governance research**, Ravindu Nawanjana.
-
 > **Important:** Activity-register examples represent plans, not verified delivery. Some original 2026 documents use conflicting retrospective and prospective language. The code refuses to mark an activity **completed_verified** without an evidence locator and dated completion record.
 
 **Workflow:** R · Quarto. Reusable R functions; defined input contract and empty-data handling; tests in base R; Quarto narrative report; GitHub Actions testing and rendering.
@@ -24,9 +22,9 @@ quarto render
 
 `outputs/` contains programme-state tables generated from illustrative **proposals only**. A new record must have a verifiable provenance and date before it is promoted to *completed_verified*.
 
-## Evidence-to-code crosswalk
+## Evidence mapping
 
-The [claim-level evidence crosswalk](docs/EVIDENCE_CROSSWALK.csv) maps individual statements in the source materials to their status, how the code treats them, and what primary evidence would be required to upgrade them. **Draft source statements are not independently verified facts.**
+The [evidence table](docs/EVIDENCE_CROSSWALK.csv) records the status of key source statements, their treatment in the analysis, and the additional evidence required for stronger interpretation.
 
 ## Research materials
 
@@ -37,4 +35,4 @@ The [claim-level evidence crosswalk](docs/EVIDENCE_CROSSWALK.csv) maps individua
 - [Evaluation and publication limits](reports/limitations.qmd)
 - [Rights and ethics](RIGHTS_AND_USE.md)
 
-The repository is an independently authored research companion, not a claim that an organisation formally commissioned, endorsed, or implemented the activities. No blanket open-source licence has been assigned.
+The repository documents the research analysis and does not imply that an organisation commissioned, endorsed, or implemented the activities. No blanket open-source licence has been assigned.
